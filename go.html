@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCHNOEZ</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#050505">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            height: 100%;
+            background: #050505;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .container {
+            padding: 40px 24px;
+        }
+        h1 {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            opacity: 0.9;
+        }
+        p {
+            font-size: 13px;
+            opacity: 0.55;
+            margin-bottom: 32px;
+            letter-spacing: 0.04em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.06);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: rgba(255,255,255,0.14);
+            border-color: rgba(255,255,255,0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SCHNOEZ</h1>
+        <p>Einen Moment bitte…</p>
+        <a class="btn" id="continue" href="https://link.me/schnoez">Weiter</a>
+    </div>
+
+    <script>
+        // Automatischer Redirect nach 1,2 Sekunden
+        setTimeout(function() {
+            window.location.href = "https://link.me/schnoez";
+        }, 1200);
+
+        // Fallback falls jemand den Button klickt
+        document.getElementById('continue').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = "https://link.me/schnoez";
+        });
+    </script>
+</body>
+</html>
