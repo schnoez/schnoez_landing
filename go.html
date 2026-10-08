@@ -3,75 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCHNOEZ</title>
+    <title>schnoez</title>
     <meta name="robots" content="noindex, nofollow">
-    <meta name="theme-color" content="#050505">
+    <meta name="theme-color" content="#0a0a0a">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         html, body {
             height: 100%;
-            background: #050505;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
             display: flex;
-            align-items: center;
             justify-content: center;
-            text-align: center;
+            align-items: center;
+            padding: 40px 16px;
         }
         .container {
-            padding: 40px 24px;
+            width: 100%;
+            max-width: 340px;
+            text-align: center;
         }
-        h1 {
-            font-size: 15px;
-            font-weight: 500;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
+
+        .avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
             margin-bottom: 18px;
-            opacity: 0.9;
+            border: 1px solid #222;
         }
-        p {
+
+        .name {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 4px;
+        }
+
+        .username {
             font-size: 13px;
-            opacity: 0.55;
+            color: #777;
             margin-bottom: 32px;
-            letter-spacing: 0.04em;
         }
+
         .btn {
-            display: inline-block;
-            padding: 14px 36px;
-            border: 1px solid rgba(255,255,255,0.6);
-            border-radius: 999px;
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            background: #161616;
             color: #fff;
             text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            background: rgba(255,255,255,0.06);
-            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            margin-bottom: 12px;
         }
         .btn:hover {
-            background: rgba(255,255,255,0.14);
-            border-color: rgba(255,255,255,0.9);
+            background: #1f1f1f;
+            border-color: #3a3a3a;
+        }
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px 18px;
+            margin-top: 28px;
+        }
+        .socials a {
+            color: #666;
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .socials a:hover {
+            color: #aaa;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>SCHNOEZ</h1>
-        <p>Einen Moment bitte…</p>
-        <a class="btn" id="continue" href="https://link.me/schnoez">Weiter</a>
+        <img class="avatar" src="hero.jpg" alt="schnoez">
+
+        <div class="name">schnoez</div>
+        <div class="username">@schnoez</div>
+
+        <!-- Main link -->
+        <a class="btn" href="https://onlyfans.com/schnoez">
+            Continue
+        </a>
+
+        <!-- Secondary links -->
+        <div class="socials">
+            <a href="https://www.instagram.com/schnoez">Instagram</a>
+            <a href="https://x.com/schnoezX">X</a>
+            <a href="https://www.tiktok.com/@schnoezz">TikTok</a>
+            <a href="https://bsky.app/profile/schnoez.bsky.social">Bluesky</a>
+        </div>
     </div>
-
-    <script>
-        // Automatischer Redirect nach 1,2 Sekunden
-        setTimeout(function() {
-            window.location.href = "https://link.me/schnoez";
-        }, 1200);
-
-        // Fallback falls jemand den Button klickt
-        document.getElementById('continue').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = "https://link.me/schnoez";
-        });
-    </script>
 </body>
 </html>
