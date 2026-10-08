@@ -2,19 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-    <title>SCHNOEZ</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
 
-    <meta name="description" content="SCHNOEZ — Content Creator">
-    <meta name="theme-color" content="#000000">
+    <title>SCHNOEZ — Content Creator</title>
 
+    <meta
+        name="description"
+        content="SCHNOEZ — Content Creator"
+    >
+
+    <meta name="theme-color" content="#050505">
+
+    <!-- Open Graph -->
     <meta property="og:title" content="SCHNOEZ">
     <meta property="og:description" content="Content Creator">
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://schnoez.com">
 
     <style>
-        * {
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -24,287 +41,745 @@
         body {
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            background: #000;
+            background: #050505;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
+            overflow: hidden;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Helvetica Neue",
+                Helvetica,
+                Arial,
+                sans-serif;
+            color: #ffffff;
         }
+
+
+        /* =========================================================
+           MAIN HERO
+        ========================================================= */
 
         .hero {
             position: relative;
+
             width: 100%;
             height: 100dvh;
             min-height: 100vh;
+
             overflow: hidden;
-            background: #000;
+
+            background: #050505;
+
+            isolation: isolate;
         }
 
-       .hero-image {
-    position: absolute;
-    z-index: 1;
 
-    width: 100%;
-    height: 100%;
+        /* =========================================================
+           AMBIENT BACKGROUND
+           Enlarged + blurred version of the same image
+        ========================================================= */
 
-    object-fit: cover;
-    object-position: center center;
-
-    transform: scale(1.01);
-}
-
-/* Enlarged ambient background for desktop */
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: -30px;
-
-    background-image: url("hero.jpg");
-    background-size: cover;
-    background-position: center center;
-
-    filter: blur(35px);
-    transform: scale(1.08);
-
-    opacity: 0.65;
-    z-index: 0;
-}
-        }
-
-        /* Subtle cinematic overlay */
-        .overlay {
+        .ambient {
             position: absolute;
+
+            inset: -70px;
+
+            z-index: 0;
+
+            background-image: url("hero.jpg");
+
+            background-size: cover;
+            background-position: center center;
+
+            filter:
+                blur(45px)
+                saturate(0.85)
+                brightness(0.52);
+
+            transform: scale(1.08);
+
+            opacity: 0.85;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           DARK CINEMATIC BACKGROUND
+        ========================================================= */
+
+        .background-darkness {
+            position: absolute;
+
             inset: 0;
+
+            z-index: 1;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(0, 0, 0, 0.02) 0%,
+                    rgba(0, 0, 0, 0.22) 55%,
+                    rgba(0, 0, 0, 0.62) 100%
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           MAIN PORTRAIT
+        ========================================================= */
+
+        .portrait {
+            position: absolute;
+
+            z-index: 2;
+
+            top: 50%;
+            left: 50%;
+
+            width: 100%;
+            height: 100%;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+
+            object-fit: contain;
+            object-position: center center;
+
+            filter:
+                brightness(0.96)
+                contrast(1.02)
+                saturate(0.96);
+
+            pointer-events: none;
+
+            will-change: transform;
+        }
+
+
+        /* =========================================================
+           EDITORIAL VIGNETTE
+        ========================================================= */
+
+        .vignette {
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 3;
+
+            pointer-events: none;
+
             background:
                 linear-gradient(
                     to bottom,
-                    rgba(0,0,0,0.28) 0%,
-                    rgba(0,0,0,0.02) 38%,
-                    rgba(0,0,0,0.04) 58%,
-                    rgba(0,0,0,0.48) 100%
+                    rgba(0, 0, 0, 0.38) 0%,
+                    rgba(0, 0, 0, 0.04) 22%,
+                    rgba(0, 0, 0, 0.00) 52%,
+                    rgba(0, 0, 0, 0.20) 78%,
+                    rgba(0, 0, 0, 0.72) 100%
                 );
+
+            box-shadow:
+                inset 0 0 160px rgba(0, 0, 0, 0.35);
         }
+
+
+        /* =========================================================
+           CONTENT
+        ========================================================= */
 
         .content {
             position: relative;
-            z-index: 2;
+
+            z-index: 5;
+
             width: 100%;
             height: 100%;
+
             display: flex;
             flex-direction: column;
             align-items: center;
+
             justify-content: space-between;
+
             padding:
-                max(8vh, 55px)
-                25px
-                max(7vh, 45px);
+                max(7vh, 50px)
+                28px
+                max(5vh, 36px);
         }
+
+
+        /* =========================================================
+           BRAND
+        ========================================================= */
 
         .brand {
             text-align: center;
-            animation: fadeDown 1.2s ease-out both;
+
+            animation:
+                brandReveal 1.25s
+                cubic-bezier(0.22, 1, 0.36, 1)
+                both;
         }
 
-        .brand h1 {
-            font-size: clamp(42px, 8vw, 82px);
-            font-weight: 600;
-            letter-spacing: 0.22em;
-            margin-left: 0.22em;
+
+        .brand-name {
+            font-size:
+                clamp(
+                    42px,
+                    7vw,
+                    88px
+                );
+
+            font-weight: 500;
+
+            letter-spacing:
+                0.24em;
+
             line-height: 1;
-        }
 
-        .brand p {
-            margin-top: 15px;
-            font-size: 11px;
-            letter-spacing: 0.42em;
-            margin-left: 0.42em;
+            margin-left: 0.24em;
+
             text-transform: uppercase;
-            opacity: 0.9;
+
+            text-shadow:
+                0 2px 25px rgba(0, 0, 0, 0.28);
         }
 
-        .enter-container {
+
+        .brand-subtitle {
+            margin-top: 17px;
+
+            font-size: 10px;
+
+            font-weight: 400;
+
+            letter-spacing: 0.48em;
+
+            margin-left: 0.48em;
+
+            text-transform: uppercase;
+
+            opacity: 0.88;
+
+            text-shadow:
+                0 2px 15px rgba(0, 0, 0, 0.45);
+        }
+
+
+        /* =========================================================
+           CENTER ACTION
+        ========================================================= */
+
+        .action {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 18px;
-            animation: fadeUp 1.2s 0.25s ease-out both;
+
+            animation:
+                actionReveal 1.3s
+                0.25s
+                cubic-bezier(0.22, 1, 0.36, 1)
+                both;
         }
 
-        .enter-button {
+
+        /* =========================================================
+           ENTER BUTTON
+        ========================================================= */
+
+        .enter {
             position: relative;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
 
-            width: 180px;
-            height: 54px;
+            width: 190px;
+            height: 56px;
 
-            border: 1px solid rgba(255,255,255,0.75);
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.68);
+
             border-radius: 999px;
 
-            color: #fff;
+            color: #ffffff;
+
             text-decoration: none;
 
-            font-size: 12px;
+            font-size: 11px;
+
             font-weight: 500;
-            letter-spacing: 0.32em;
+
+            letter-spacing: 0.34em;
+
             text-transform: uppercase;
 
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            margin-left: 0.34em;
 
-            background: rgba(0,0,0,0.12);
+            background:
+                rgba(10, 10, 10, 0.16);
+
+            backdrop-filter:
+                blur(12px)
+                saturate(120%);
+
+            -webkit-backdrop-filter:
+                blur(12px)
+                saturate(120%);
+
+            box-shadow:
+                0 10px 40px
+                rgba(0, 0, 0, 0.20),
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 0.12);
 
             transition:
-                background 0.35s ease,
-                border-color 0.35s ease,
-                transform 0.35s ease;
+                transform 0.45s
+                cubic-bezier(0.22, 1, 0.36, 1),
+
+                background 0.45s ease,
+
+                border-color 0.45s ease,
+
+                box-shadow 0.45s ease;
         }
 
-        .enter-button:hover {
-            background: rgba(255,255,255,0.16);
-            border-color: #fff;
-            transform: translateY(-2px);
+
+        /* subtle highlight */
+
+        .enter::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 1px;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.12),
+                    transparent 45%
+                );
+
+            opacity: 0;
+
+            transition:
+                opacity 0.45s ease;
         }
 
-        .enter-button:active {
-            transform: scale(0.97);
+
+        .enter:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(255, 255, 255, 0.12);
+
+            border-color:
+                rgba(255, 255, 255, 0.95);
+
+            box-shadow:
+                0 15px 50px
+                rgba(0, 0, 0, 0.30),
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 0.20);
         }
+
+
+        .enter:hover::before {
+            opacity: 1;
+        }
+
+
+        .enter:active {
+            transform:
+                translateY(0)
+                scale(0.97);
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
 
         .footer {
             font-size: 9px;
-            letter-spacing: 0.28em;
+
+            font-weight: 400;
+
+            letter-spacing: 0.36em;
+
+            margin-left: 0.36em;
+
             text-transform: uppercase;
-            opacity: 0.7;
-            animation: fadeUp 1.2s 0.4s ease-out both;
+
+            opacity: 0.62;
+
+            text-shadow:
+                0 2px 12px
+                rgba(0, 0, 0, 0.55);
+
+            animation:
+                footerReveal 1.2s
+                0.45s
+                ease-out
+                both;
         }
 
-        @keyframes fadeDown {
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
+
+        @keyframes brandReveal {
+
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+
+                transform:
+                    translateY(-18px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
         }
 
-        @keyframes fadeUp {
+
+        @keyframes actionReveal {
+
             from {
                 opacity: 0;
-                transform: translateY(20px);
+
+                transform:
+                    translateY(22px);
             }
 
             to {
                 opacity: 1;
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
         }
 
-        /* Desktop */
+
+        @keyframes footerReveal {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0.62;
+            }
+        }
+
+
+        /* =========================================================
+           DESKTOP
+        ========================================================= */
+
         @media (min-width: 768px) {
 
-            .hero-image {
-                object-position: center center;
-            }
-
             .content {
                 padding:
-                    7vh
+                    6vh
                     50px
-                    5vh;
+                    4vh;
             }
 
-            .brand h1 {
-                font-size: clamp(55px, 6vw, 88px);
+
+            .portrait {
+
+                width: 100%;
+                height: 100%;
+
+                object-fit: contain;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.01);
             }
 
-            .enter-button {
-                width: 200px;
-                height: 58px;
+
+            .brand-name {
+                font-size:
+                    clamp(
+                        58px,
+                        6vw,
+                        94px
+                    );
+            }
+
+
+            .brand-subtitle {
+                font-size: 10px;
+
+                letter-spacing: 0.52em;
+
+                margin-left: 0.52em;
+            }
+
+
+            .enter {
+                width: 205px;
+                height: 60px;
             }
         }
 
-        /* Mobile */
+
+        /* =========================================================
+           WIDE DESKTOP
+           Prevent excessive empty space
+        ========================================================= */
+
+        @media (min-width: 1400px) {
+
+            .portrait {
+                height: 96%;
+            }
+
+
+            .ambient {
+                filter:
+                    blur(55px)
+                    saturate(0.82)
+                    brightness(0.48);
+            }
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
         @media (max-width: 767px) {
 
-            .hero-image {
-                object-position: center center;
+            .ambient {
+
+                inset: -50px;
+
+                filter:
+                    blur(32px)
+                    brightness(0.48)
+                    saturate(0.85);
+
+                opacity: 0.75;
             }
+
+
+            .portrait {
+
+                width: 100%;
+                height: 100%;
+
+                object-fit: cover;
+
+                object-position: center center;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.005);
+            }
+
 
             .content {
+
                 padding:
-                    max(7vh, 45px)
+                    max(6vh, 42px)
                     20px
-                    max(5vh, 35px);
+                    max(4vh, 32px);
             }
 
-            .brand h1 {
-                font-size: clamp(38px, 12vw, 58px);
-                letter-spacing: 0.18em;
-                margin-left: 0.18em;
+
+            .brand-name {
+
+                font-size:
+                    clamp(
+                        38px,
+                        12vw,
+                        58px
+                    );
+
+                letter-spacing:
+                    0.19em;
+
+                margin-left:
+                    0.19em;
             }
 
-            .brand p {
-                font-size: 9px;
-                letter-spacing: 0.32em;
-                margin-left: 0.32em;
+
+            .brand-subtitle {
+
                 margin-top: 12px;
+
+                font-size: 8px;
+
+                letter-spacing:
+                    0.36em;
+
+                margin-left:
+                    0.36em;
             }
 
-            .enter-button {
-                width: 170px;
-                height: 52px;
+
+            .enter {
+
+                width: 175px;
+
+                height: 53px;
+
+                font-size: 10px;
+
+                letter-spacing:
+                    0.30em;
+
+                margin-left:
+                    0.30em;
             }
         }
 
-        /* Respect users who prefer reduced motion */
+
+        /* =========================================================
+           SMALL PHONES
+        ========================================================= */
+
+        @media (max-width: 380px) {
+
+            .brand-name {
+                font-size: 36px;
+            }
+
+
+            .brand-subtitle {
+                font-size: 7px;
+            }
+
+
+            .enter {
+                width: 165px;
+            }
+        }
+
+
+        /* =========================================================
+           ACCESSIBILITY
+        ========================================================= */
+
         @media (prefers-reduced-motion: reduce) {
+
             .brand,
-            .enter-container,
+            .action,
             .footer {
+
                 animation: none;
             }
 
-            .enter-button {
+
+            .enter {
+
                 transition: none;
             }
         }
+
     </style>
 </head>
+
 
 <body>
 
     <main class="hero">
 
+
+        <!--
+            AMBIENT BACKGROUND
+
+            This uses the same image as the main portrait,
+            enlarged and blurred, so desktop screens
+            never have ugly empty areas.
+        -->
+
+        <div
+            class="ambient"
+            aria-hidden="true">
+        </div>
+
+
+        <!-- Dark cinematic layer -->
+
+        <div
+            class="background-darkness"
+            aria-hidden="true">
+        </div>
+
+
+        <!-- Main portrait -->
+
         <img
-            class="hero-image"
+            class="portrait"
             src="hero.jpg"
             alt="SCHNOEZ"
         >
 
-        <div class="overlay"></div>
+
+        <!-- Cinematic vignette -->
+
+        <div
+            class="vignette"
+            aria-hidden="true">
+        </div>
+
+
+        <!-- Main content -->
 
         <div class="content">
 
+
+            <!-- BRAND -->
+
             <header class="brand">
-                <h1>SCHNOEZ</h1>
-                <p>Content Creator</p>
+
+                <h1 class="brand-name">
+                    SCHNOEZ
+                </h1>
+
+                <p class="brand-subtitle">
+                    Content Creator
+                </p>
+
             </header>
 
-            <div class="enter-container">
+
+            <!-- ACTION -->
+
+            <div class="action">
 
                 <!--
-                    REPLACE THIS URL LATER
-                    with your external link page.
+                    CHANGE THIS URL
+                    TO YOUR LINK.ME PAGE
                 -->
+
                 <a
-                    class="enter-button"
-                    href="https://link.me/schnoez"
+                    class="enter"
+                    href="https://example.com"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -313,13 +788,92 @@
 
             </div>
 
-            <div class="footer">
+
+            <!-- FOOTER -->
+
+            <footer class="footer">
                 @schnoez
-            </div>
+            </footer>
+
 
         </div>
 
     </main>
+
+
+    <!--
+        VERY SUBTLE DESKTOP PARALLAX
+
+        The portrait moves only a few pixels
+        when the mouse moves.
+
+        It is intentionally subtle.
+    -->
+
+    <script>
+
+        const portrait =
+            document.querySelector(".portrait");
+
+        const hero =
+            document.querySelector(".hero");
+
+
+        const desktop =
+            window.matchMedia(
+                "(min-width: 768px)"
+            );
+
+
+        if (desktop.matches) {
+
+            hero.addEventListener(
+                "mousemove",
+                (event) => {
+
+                    const x =
+                        (event.clientX /
+                        window.innerWidth) - 0.5;
+
+                    const y =
+                        (event.clientY /
+                        window.innerHeight) - 0.5;
+
+
+                    const moveX =
+                        x * 8;
+
+                    const moveY =
+                        y * 5;
+
+
+                    portrait.style.transform =
+                        `
+                        translate(
+                            calc(-50% + ${moveX}px),
+                            calc(-50% + ${moveY}px)
+                        )
+                        scale(1.01)
+                        `;
+                }
+            );
+
+
+            hero.addEventListener(
+                "mouseleave",
+                () => {
+
+                    portrait.style.transform =
+                        `
+                        translate(-50%, -50%)
+                        scale(1.01)
+                        `;
+                }
+            );
+
+        }
+
+    </script>
 
 </body>
 </html>
