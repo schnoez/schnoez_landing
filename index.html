@@ -2,54 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>SCHNOEZ — Content Creator</title>
-    <meta
-        name="description"
-        content="SCHNOEZ — Content Creator"
-    >
+    <meta name="description" content="SCHNOEZ — Content Creator">
     <meta name="theme-color" content="#050505">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    <!-- Open Graph -->
     <meta property="og:title" content="SCHNOEZ">
     <meta property="og:description" content="Content Creator">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://schnoez.com">
     <style>
-        /* =========================================================
-           RESET
-        ========================================================= */
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        html,
-        body {
+        html, body {
             width: 100%;
             height: 100%;
             background: #050505;
         }
         body {
             overflow: hidden;
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Helvetica Neue",
-                Helvetica,
-                Arial,
-                sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
             color: #ffffff;
+            touch-action: none;
         }
-        /* =========================================================
-           MAIN HERO
-        ========================================================= */
         .hero {
             position: relative;
             width: 100%;
@@ -59,9 +38,6 @@
             background: #050505;
             isolation: isolate;
         }
-        /* =========================================================
-           AMBIENT BACKGROUND
-        ========================================================= */
         .ambient {
             position: absolute;
             inset: -70px;
@@ -69,78 +45,51 @@
             background-image: url("hintergrund_schnoez_1_large.jpg");
             background-size: cover;
             background-position: center center;
-            filter:
-                blur(45px)
-                saturate(0.85)
-                brightness(0.52);
+            filter: blur(45px) saturate(0.85) brightness(0.52);
             transform: scale(1.08);
             opacity: 0.85;
             pointer-events: none;
         }
-        /* =========================================================
-           DARK CINEMATIC BACKGROUND
-        ========================================================= */
         .background-darkness {
             position: absolute;
             inset: 0;
             z-index: 1;
-            background:
-                radial-gradient(
-                    ellipse at center,
-                    rgba(0, 0, 0, 0.02) 0%,
-                    rgba(0, 0, 0, 0.22) 55%,
-                    rgba(0, 0, 0, 0.62) 100%
-                );
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.62) 100%);
             pointer-events: none;
         }
-        /* =========================================================
-           MAIN PORTRAIT
-        ========================================================= */
-.portrait {
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%) scale(1.04);
-    object-fit: contain;
-    object-position: center center;
-    filter:
-        brightness(0.96)
-        contrast(1.02)
-        saturate(0.96);
-    pointer-events: none;
-    will-change: transform;
-    animation: drift 18s ease-in-out infinite alternate;
-}
-@keyframes drift {
-    from { transform: translate(-50%, -50%) scale(1.02); }
-    to { transform: translate(-50%, -50%) scale(1.07); }
-}
-        /* =========================================================
-           EDITORIAL VIGNETTE
-        ========================================================= */
+        .portrait-wrap {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            animation: drift 22s ease-in-out infinite alternate;
+            will-change: transform;
+            pointer-events: none;
+        }
+        .portrait {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center center;
+            filter: brightness(0.96) contrast(1.02) saturate(0.96);
+            transform: translate3d(0, 0, 0) scale(1.04);
+            will-change: transform;
+        }
+        @keyframes drift {
+            from { transform: translate(-50%, -50%) scale(1); }
+            to { transform: translate(-50%, -50%) scale(1.06); }
+        }
         .vignette {
             position: absolute;
             inset: 0;
             z-index: 3;
             pointer-events: none;
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(0, 0, 0, 0.38) 0%,
-                    rgba(0, 0, 0, 0.04) 22%,
-                    rgba(0, 0, 0, 0.00) 52%,
-                    rgba(0, 0, 0, 0.20) 78%,
-                    rgba(0, 0, 0, 0.72) 100%
-                );
-            box-shadow:
-                inset 0 0 160px rgba(0, 0, 0, 0.35);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.04) 22%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.20) 78%, rgba(0,0,0,0.72) 100%);
+            box-shadow: inset 0 0 160px rgba(0,0,0,0.35);
         }
-        /* =========================================================
-           CONTENT
-        ========================================================= */
         .content {
             position: relative;
             z-index: 5;
@@ -150,41 +99,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding:
-                max(7vh, 50px)
-                28px
-                max(5vh, 36px);
+            padding: max(7vh, 50px) 28px max(5vh, 36px);
         }
-        /* =========================================================
-           BRAND
-        ========================================================= */
         .brand {
             text-align: center;
-            animation:
-                brandReveal 1.25s
-                cubic-bezier(0.22, 1, 0.36, 1)
-                both;
+            animation: brandReveal 1.25s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
         .brand-name {
-            font-size:
-                clamp(
-                    42px,
-                    7vw,
-                    88px
-                );
+            font-size: clamp(42px, 7vw, 88px);
             font-weight: 500;
-            letter-spacing:
-                0.24em;
+            letter-spacing: 0.24em;
             line-height: 1;
             margin-left: 0.24em;
             text-transform: uppercase;
-            text-shadow:
-                0 2px 25px rgba(0, 0, 0, 0.28);
+            text-shadow: 0 2px 25px rgba(0,0,0,0.28);
         }
-        /* =========================================================
-           BRAND SUBTITLE
-           All three lines use the same typography
-        ========================================================= */
         .brand-subtitle {
             display: flex;
             flex-direction: column;
@@ -193,12 +122,9 @@
             font-size: 10px;
             font-weight: 400;
             letter-spacing: 0.14em;
-            text-shadow:
-                0 2px 15px rgba(0, 0, 0, 0.45);
+            text-shadow: 0 2px 15px rgba(0,0,0,0.45);
         }
-        .creator-label,
-        .weirdo,
-        .tagline {
+        .creator-label, .weirdo, .tagline {
             font-size: 14px;
             font-weight: 400;
             letter-spacing: 0.14em;
@@ -206,29 +132,14 @@
             text-transform: none;
             opacity: 0.82;
         }
-        .weirdo {
-            margin-top: 9px;
-        }
-        .tagline {
-            margin-top: 8px;
-            opacity: 0.68;
-        }
-        /* =========================================================
-           CENTER ACTION
-        ========================================================= */
+        .weirdo { margin-top: 9px; }
+        .tagline { margin-top: 8px; opacity: 0.68; }
         .action {
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation:
-                actionReveal 1.3s
-                0.25s
-                cubic-bezier(0.22, 1, 0.36, 1)
-                both;
+            animation: actionReveal 1.3s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
-        /* =========================================================
-           ENTER BUTTON
-        ========================================================= */
         .enter {
             position: relative;
             display: flex;
@@ -236,9 +147,7 @@
             justify-content: center;
             width: 190px;
             height: 56px;
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.68);
+            border: 1px solid rgba(255,255,255,0.68);
             border-radius: 999px;
             color: #ffffff;
             text-decoration: none;
@@ -249,408 +158,190 @@
             letter-spacing: 0.34em;
             text-transform: uppercase;
             margin-left: 0.34em;
-            background:
-                rgba(10, 10, 10, 0.16);
-            backdrop-filter:
-                blur(12px)
-                saturate(120%);
-            -webkit-backdrop-filter:
-                blur(12px)
-                saturate(120%);
-            box-shadow:
-                0 10px 40px
-                rgba(0, 0, 0, 0.20),
-                inset 0 1px 0
-                rgba(255, 255, 255, 0.12);
-            transition:
-                transform 0.45s
-                cubic-bezier(0.22, 1, 0.36, 1),
-                background 0.45s ease,
-                border-color 0.45s ease,
-                box-shadow 0.45s ease;
+            background: rgba(10,10,10,0.16);
+            backdrop-filter: blur(12px) saturate(120%);
+            -webkit-backdrop-filter: blur(12px) saturate(120%);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.12);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, opacity 0.3s ease;
         }
-        /* subtle highlight */
         .enter::before {
             content: "";
             position: absolute;
             inset: 1px;
             border-radius: inherit;
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.12),
-                    transparent 45%
-                );
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 45%);
             opacity: 0;
-            transition:
-                opacity 0.45s ease;
+            transition: opacity 0.45s ease;
         }
         .enter:hover {
-            transform:
-                translateY(-3px);
-            background:
-                rgba(255, 255, 255, 0.12);
-            border-color:
-                rgba(255, 255, 255, 0.95);
-            box-shadow:
-                0 15px 50px
-                rgba(0, 0, 0, 0.30),
-                inset 0 1px 0
-                rgba(255, 255, 255, 0.20);
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.95);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.20);
         }
-        .enter:hover::before {
+        .enter:hover::before { opacity: 1; }
+        .enter:active { transform: translateY(0) scale(0.97); }
+        .footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            opacity: 0.62;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+            animation: footerReveal 1.2s 0.45s ease-out both;
+        }
+        .separator { opacity: 0.45; letter-spacing: 0; }
+        .impressum-link {
+            color: inherit;
+            font: inherit;
+            letter-spacing: inherit;
+            text-transform: inherit;
+            text-decoration: none;
             opacity: 1;
+            transition: opacity 0.3s ease;
         }
-        .enter:active {
-            transform:
-                translateY(0)
-                scale(0.97);
-        }
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-.footer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    opacity: 0.62;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
-    animation: footerReveal 1.2s 0.45s ease-out both;
-}
-
-.separator {
-    opacity: 0.45;
-    letter-spacing: 0;
-}
-
-.impressum-link {
-    color: inherit;
-    font: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
-    text-decoration: none;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.impressum-link:hover {
-    opacity: 0.7;
-}
-        /* =========================================================
-           ANIMATIONS
-        ========================================================= */
+        .impressum-link:hover { opacity: 0.7; }
         @keyframes brandReveal {
-            from {
-                opacity: 0;
-                transform:
-                    translateY(-18px);
-            }
-            to {
-                opacity: 1;
-                transform:
-                    translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-18px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes actionReveal {
-            from {
-                opacity: 0;
-                transform:
-                    translateY(22px);
-            }
-            to {
-                opacity: 1;
-                transform:
-                    translateY(0);
-            }
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes footerReveal {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 0.62;
-            }
+            from { opacity: 0; }
+            to { opacity: 0.62; }
         }
-        /* =========================================================
-           DESKTOP
-        ========================================================= */
         @media (min-width: 768px) {
-            .content {
-                padding:
-                    6vh
-                    50px
-                    4vh;
-            }
-            .portrait {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                transform:
-                    translate(-50%, -50%)
-                    scale(1.01);
-            }
-            .brand-name {
-                font-size:
-                    clamp(
-                        58px,
-                        6vw,
-                        94px
-                    );
-            }
-            .brand-subtitle {
-                margin-top: 17px;
-            }
-            .creator-label,
-            .weirdo,
-            .tagline {
-                font-size: 14px;
-                letter-spacing: 0.15em;
-            }
-            .enter {
-                width: 205px;
-                height: 60px;
-            }
+            .content { padding: 6vh 50px 4vh; }
+            .brand-name { font-size: clamp(58px, 6vw, 94px); }
+            .brand-subtitle { margin-top: 17px; }
+            .creator-label, .weirdo, .tagline { font-size: 14px; letter-spacing: 0.15em; }
+            .enter { width: 205px; height: 60px; }
         }
-        /* =========================================================
-           WIDE DESKTOP
-        ========================================================= */
         @media (min-width: 1400px) {
-            .portrait {
-                height: 96%;
-            }
-            .ambient {
-                filter:
-                    blur(55px)
-                    saturate(0.82)
-                    brightness(0.48);
-            }
+            .ambient { filter: blur(55px) saturate(0.82) brightness(0.48); }
         }
-        /* =========================================================
-           MOBILE
-        ========================================================= */
         @media (max-width: 767px) {
             .ambient {
                 inset: -50px;
-                filter:
-                    blur(32px)
-                    brightness(0.48)
-                    saturate(0.85);
+                filter: blur(32px) brightness(0.48) saturate(0.85);
                 opacity: 0.75;
             }
-            .portrait {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center center;
-                transform:
-                    translate(-50%, -50%)
-                    scale(1.005);
-            }
-            .content {
-                padding:
-                    max(6vh, 42px)
-                    20px
-                    max(4vh, 32px);
-            }
+            .portrait { object-fit: cover; }
+            .content { padding: max(6vh, 42px) 20px max(4vh, 32px); }
             .brand-name {
-                font-size:
-                    clamp(
-                        38px,
-                        12vw,
-                        58px
-                    );
-                letter-spacing:
-                    0.19em;
-                margin-left:
-                    0.19em;
+                font-size: clamp(38px, 12vw, 58px);
+                letter-spacing: 0.19em;
+                margin-left: 0.19em;
             }
-            .brand-subtitle {
-                margin-top: 12px;
-            }
-            .creator-label,
-            .weirdo,
-            .tagline {
+            .brand-subtitle { margin-top: 12px; }
+            .creator-label, .weirdo, .tagline {
                 font-size: 11px;
-                letter-spacing:
-                    0.10em;
+                letter-spacing: 0.10em;
                 line-height: 1.25;
             }
-            .weirdo {
-                margin-top: 8px;
-            }
-            .tagline {
-                margin-top: 7px;
-            }
+            .weirdo { margin-top: 8px; }
+            .tagline { margin-top: 7px; }
             .enter {
                 width: 175px;
                 height: 53px;
                 font-size: 10px;
-                letter-spacing:
-                    0.30em;
-                margin-left:
-                    0.30em;
+                letter-spacing: 0.30em;
+                margin-left: 0.30em;
             }
         }
-        /* =========================================================
-           SMALL PHONES
-        ========================================================= */
         @media (max-width: 380px) {
-            .brand-name {
-                font-size: 36px;
-            }
-            .creator-label,
-            .weirdo,
-            .tagline {
-                font-size: 9px;
-            }
-            .enter {
-                width: 165px;
-            }
+            .brand-name { font-size: 36px; }
+            .creator-label, .weirdo, .tagline { font-size: 9px; }
+            .enter { width: 165px; }
         }
-        /* =========================================================
-           ACCESSIBILITY
-        ========================================================= */
         @media (prefers-reduced-motion: reduce) {
-            .brand,
-            .action,
-            .footer {
-                animation: none;
-            }
-            .enter {
-                transition: none;
-            }
+            .brand, .action, .footer, .portrait-wrap { animation: none; }
+            .enter { transition: none; }
         }
     </style>
 </head>
 <body>
     <main class="hero">
-        <!--
-            AMBIENT BACKGROUND
-            This uses the same image as the main portrait,
-            enlarged and blurred, so desktop screens
-            never have ugly empty areas.
-        -->
-        <div
-            class="ambient"
-            aria-hidden="true">
+        <div class="ambient" aria-hidden="true"></div>
+        <div class="background-darkness" aria-hidden="true"></div>
+        <div class="portrait-wrap">
+            <img class="portrait" src="hintergrund_schnoez_1_large.jpg" alt="SCHNOEZ">
         </div>
-        <!-- Dark cinematic layer -->
-        <div
-            class="background-darkness"
-            aria-hidden="true">
-        </div>
-        <!-- Main portrait -->
-        <img
-            class="portrait"
-            src="hintergrund_schnoez_1_large.jpg"
-            alt="SCHNOEZ"
-        >
-        <!-- Cinematic vignette -->
-        <div
-            class="vignette"
-            aria-hidden="true">
-        </div>
-        <!-- Main content -->
+        <div class="vignette" aria-hidden="true"></div>
         <div class="content">
-            <!-- BRAND -->
             <header class="brand">
-                <h1 class="brand-name">
-                    SCHNOEZ
-                </h1>
+                <h1 class="brand-name">SCHNOEZ</h1>
                 <div class="brand-subtitle">
-                    <span class="creator-label">
-                        Content Creator
-                    </span>
-                    <span class="weirdo">
-                        weirdo
-                    </span>
-                    <span class="tagline">
-                        You probably shouldn't be here.
-                    </span>
+                    <span class="creator-label">Content Creator</span>
+                    <span class="weirdo">weirdo</span>
+                    <span class="tagline">You probably shouldn't be here.</span>
                 </div>
             </header>
-            <!-- ACTION -->
             <div class="action">
-               <a class="enter" href="#" id="enter-btn">
-                Enter
-        </a>
+                <a class="enter" href="#" id="enter-btn">Enter</a>
             </div>
-            <!-- FOOTER -->
-<footer class="footer">
-    @schnoez
-    <span class="separator">·</span>
-    <a href="/impressum.html" class="impressum-link">Impressum</a>
-</footer>
+            <footer class="footer">
+                @schnoez
+                <span class="separator">·</span>
+                <a href="/impressum.html" class="impressum-link">Impressum</a>
+            </footer>
         </div>
     </main>
-       <!--
-        VERY SUBTLE DESKTOP PARALLAX
-        The portrait moves only a few pixels
-        when the mouse moves.
-        It is intentionally subtle.
-    -->
     <script>
-const portrait = document.querySelector(".portrait");
-let dragging = false;
-let startX = 0;
-let startY = 0;
-let currentX = 0;
-let currentY = 0;
+        const portrait = document.querySelector(".portrait");
+        let dragging = false;
+        let startX = 0;
+        let startY = 0;
+        let currentX = 0;
+        let currentY = 0;
 
-function setShift(x, y) {
-    portrait.style.animation = "none";
-    portrait.style.transform =
-        `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(1.04)`;
-}
+        function setShift(x, y) {
+            portrait.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.04)`;
+        }
 
-window.addEventListener("pointerdown", (e) => {
-    if (e.target.closest("#enter-btn, .impressum-link")) return;
-    dragging = true;
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
-    portrait.style.transition = "none";
-});
+        window.addEventListener("pointerdown", (e) => {
+            if (e.target.closest("#enter-btn, .impressum-link")) return;
+            dragging = true;
+            startX = e.clientX - currentX;
+            startY = e.clientY - currentY;
+            portrait.style.transition = "none";
+        });
 
-window.addEventListener("pointermove", (e) => {
-    if (!dragging) return;
-    currentX = Math.max(-28, Math.min(28, e.clientX - startX));
-    currentY = Math.max(-18, Math.min(18, e.clientY - startY));
-    setShift(currentX, currentY);
-});
+        window.addEventListener("pointermove", (e) => {
+            if (!dragging) return;
+            currentX = Math.max(-24, Math.min(24, e.clientX - startX));
+            currentY = Math.max(-16, Math.min(16, e.clientY - startY));
+            setShift(currentX, currentY);
+        });
 
-function endDrag() {
-    if (!dragging) return;
-    dragging = false;
-    currentX = 0;
-    currentY = 0;
-    portrait.style.transition = "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)";
-    setShift(0, 0);
-    setTimeout(() => {
-        portrait.style.animation = "";
-        portrait.style.transition = "";
-        portrait.style.transform = "";
-    }, 700);
-}
+        function endDrag() {
+            if (!dragging) return;
+            dragging = false;
+            currentX = 0;
+            currentY = 0;
+            portrait.style.transition = "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+            setShift(0, 0);
+        }
 
-window.addEventListener("pointerup", endDrag);
-window.addEventListener("pointercancel", endDrag);
+        window.addEventListener("pointerup", endDrag);
+        window.addEventListener("pointercancel", endDrag);
 
-        // Enter Button Redirect
-     document.getElementById('enter-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    this.textContent = "Loading...";
-    this.style.opacity = "0.65";
-    this.style.pointerEvents = "none";
-
-    setTimeout(function() {
-        window.location.href = "https://schnoez.de";
-    }, 400);
-});
+        document.getElementById("enter-btn").addEventListener("click", function (e) {
+            e.preventDefault();
+            this.textContent = "Loading...";
+            this.style.opacity = "0.65";
+            this.style.pointerEvents = "none";
+            setTimeout(function () {
+                window.location.href = "https://schnoez.de";
+            }, 400);
+        });
     </script>
 </body>
 </html>
