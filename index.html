@@ -135,7 +135,7 @@
             letter-spacing: 0.34em;
             text-transform: uppercase;
             margin-left: 0.34em;
-            background: rgba(12, 12, 12, 0.38);
+            background: rgba(12, 12, 12, 0.55);
             backdrop-filter: blur(16px) saturate(140%);
             -webkit-backdrop-filter: blur(16px) saturate(140%);
             box-shadow: 0 10px 40px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.12);
@@ -236,7 +236,7 @@
                 font-size: 10px;
                 letter-spacing: 0.30em;
                 margin-left: 0.30em;
-                background: rgba(8, 8, 8, 0.55);
+                background: rgba(8, 8, 8, 0.62);
                 -webkit-backdrop-filter: blur(18px) saturate(160%);
                 backdrop-filter: blur(18px) saturate(160%);
             }
@@ -283,11 +283,17 @@
             enterBtn.textContent = "Enter";
             enterBtn.style.opacity = "";
             enterBtn.style.pointerEvents = "";
+            enterBtn.style.background = "";
+            enterBtn.style.webkitBackdropFilter = "";
+            enterBtn.style.backdropFilter = "";
+            enterBtn.style.animation = "none";
+            void enterBtn.offsetWidth;
+            enterBtn.style.animation = "";
         }
 
         window.addEventListener("pagehide", resetEnter);
         window.addEventListener("pageshow", function () {
-            setTimeout(resetEnter, 0);
+            setTimeout(resetEnter, 50);
         });
 
         const portrait = document.querySelector(".portrait");
