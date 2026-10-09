@@ -47,6 +47,7 @@
             z-index: 1;
             background: radial-gradient(ellipse at center, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.62) 100%);
             pointer-events: none;
+            animation: breathe 9s ease-in-out infinite alternate;
         }
         .portrait {
             position: absolute;
@@ -176,6 +177,10 @@
             text-decoration: none;
         }
         .impressum-link:hover { opacity: 0.7; }
+        @keyframes breathe {
+            from { opacity: 0.82; }
+            to { opacity: 1; }
+        }
         @keyframes brandReveal {
             from { opacity: 0; transform: translateY(-18px); }
             to { opacity: 1; transform: translateY(0); }
@@ -194,19 +199,41 @@
             .enter { width: 205px; height: 60px; }
         }
         @media (max-width: 767px) {
-            .ambient { inset: -50px; filter: blur(24px) brightness(0.48) saturate(0.85); opacity: 0.75; }
+            .ambient {
+                inset: -50px;
+                filter: blur(16px) brightness(0.48) saturate(0.85);
+                opacity: 0.75;
+            }
             .portrait { object-fit: cover; }
-            .content { padding: max(6vh, 42px) 20px max(4vh, 32px); }
-            .brand-name { font-size: clamp(38px, 12vw, 58px); letter-spacing: 0.19em; margin-left: 0.19em; }
-            .creator-label, .weirdo, .tagline { font-size: 11px; letter-spacing: 0.1em; }
-            .enter { width: 175px; height: 53px; font-size: 10px; letter-spacing: 0.3em; margin-left: 0.3em; }
+            .content { padding: max(8vh, 52px) 20px max(5vh, 36px); }
+            .brand-name {
+                font-size: clamp(38px, 12vw, 58px);
+                letter-spacing: 0.19em;
+                margin-left: 0.19em;
+            }
+            .brand-subtitle { margin-top: 12px; }
+            .creator-label, .weirdo, .tagline {
+                font-size: 11px;
+                letter-spacing: 0.10em;
+                line-height: 1.25;
+            }
+            .weirdo { margin-top: 8px; }
+            .tagline { margin-top: 7px; }
+            .enter {
+                width: 175px;
+                height: 53px;
+                font-size: 10px;
+                letter-spacing: 0.30em;
+                margin-left: 0.30em;
+            }
         }
         @media (max-width: 380px) {
             .brand-name { font-size: 36px; }
+            .creator-label, .weirdo, .tagline { font-size: 9px; }
             .enter { width: 165px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .brand, .action, .footer { animation: none; }
+            .brand, .action, .footer, .background-darkness { animation: none; }
         }
     </style>
 </head>
