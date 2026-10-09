@@ -13,21 +13,12 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://schnoez.com">
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            width: 100%;
-            height: 100%;
-            background: #050505;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; background: #050505; }
         body {
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
             color: #ffffff;
-            touch-action: none;
         }
         .hero {
             position: relative;
@@ -57,24 +48,18 @@
             background: radial-gradient(ellipse at center, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.62) 100%);
             pointer-events: none;
         }
-        .portrait-wrap {
+        .portrait {
             position: absolute;
             z-index: 2;
             top: 50%;
             left: 50%;
-            width: 100%;
-            height: 100%;
-            transform: translate(-50%, -50%);
-            will-change: transform;
-            pointer-events: none;
-        }
-        .portrait {
-            width: 100%;
-            height: 100%;
+            width: 108%;
+            height: 108%;
             object-fit: contain;
             object-position: center center;
             filter: brightness(0.96) contrast(1.02) saturate(0.96);
-            transform: translate3d(0, 0, 0) scale(1.04);
+            transform: translate3d(-50%, -50%, 0);
+            pointer-events: none;
             will-change: transform;
         }
         .vignette {
@@ -114,10 +99,6 @@
             flex-direction: column;
             align-items: center;
             margin-top: 17px;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 0.14em;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.45);
         }
         .creator-label, .weirdo, .tagline {
             font-size: 14px;
@@ -172,15 +153,12 @@
             transform: translateY(-3px);
             background: rgba(255,255,255,0.12);
             border-color: rgba(255,255,255,0.95);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.20);
         }
         .enter:hover::before { opacity: 1; }
-        .enter:active { transform: translateY(0) scale(0.97); }
         .footer {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size: 10px;
             font-weight: 400;
             letter-spacing: 0.22em;
@@ -196,8 +174,6 @@
             letter-spacing: inherit;
             text-transform: inherit;
             text-decoration: none;
-            opacity: 1;
-            transition: opacity 0.3s ease;
         }
         .impressum-link:hover { opacity: 0.7; }
         @keyframes brandReveal {
@@ -215,50 +191,22 @@
         @media (min-width: 768px) {
             .content { padding: 6vh 50px 4vh; }
             .brand-name { font-size: clamp(58px, 6vw, 94px); }
-            .brand-subtitle { margin-top: 17px; }
-            .creator-label, .weirdo, .tagline { font-size: 14px; letter-spacing: 0.15em; }
             .enter { width: 205px; height: 60px; }
         }
-        @media (min-width: 1400px) {
-            .ambient { filter: blur(55px) saturate(0.82) brightness(0.48); }
-        }
         @media (max-width: 767px) {
-            .ambient {
-                inset: -50px;
-                filter: blur(32px) brightness(0.48) saturate(0.85);
-                opacity: 0.75;
-            }
+            .ambient { inset: -50px; filter: blur(24px) brightness(0.48) saturate(0.85); opacity: 0.75; }
             .portrait { object-fit: cover; }
             .content { padding: max(6vh, 42px) 20px max(4vh, 32px); }
-            .brand-name {
-                font-size: clamp(38px, 12vw, 58px);
-                letter-spacing: 0.19em;
-                margin-left: 0.19em;
-            }
-            .brand-subtitle { margin-top: 12px; }
-            .creator-label, .weirdo, .tagline {
-                font-size: 11px;
-                letter-spacing: 0.10em;
-                line-height: 1.25;
-            }
-            .weirdo { margin-top: 8px; }
-            .tagline { margin-top: 7px; }
-            .enter {
-                width: 175px;
-                height: 53px;
-                font-size: 10px;
-                letter-spacing: 0.30em;
-                margin-left: 0.30em;
-            }
+            .brand-name { font-size: clamp(38px, 12vw, 58px); letter-spacing: 0.19em; margin-left: 0.19em; }
+            .creator-label, .weirdo, .tagline { font-size: 11px; letter-spacing: 0.1em; }
+            .enter { width: 175px; height: 53px; font-size: 10px; letter-spacing: 0.3em; margin-left: 0.3em; }
         }
         @media (max-width: 380px) {
             .brand-name { font-size: 36px; }
-            .creator-label, .weirdo, .tagline { font-size: 9px; }
             .enter { width: 165px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .brand, .action, .footer, .portrait-wrap { animation: none; }
-            .enter { transition: none; }
+            .brand, .action, .footer { animation: none; }
         }
     </style>
 </head>
@@ -266,9 +214,7 @@
     <main class="hero">
         <div class="ambient" aria-hidden="true"></div>
         <div class="background-darkness" aria-hidden="true"></div>
-        <div class="portrait-wrap">
-            <img class="portrait" src="hintergrund_schnoez_1_large.jpg" alt="SCHNOEZ">
-        </div>
+        <img class="portrait" src="hintergrund_schnoez_1_large.jpg" alt="SCHNOEZ">
         <div class="vignette" aria-hidden="true"></div>
         <div class="content">
             <header class="brand">
@@ -290,54 +236,28 @@
         </div>
     </main>
     <script>
-        const wrap = document.querySelector(".portrait-wrap");
-        const zoomStart = performance.now();
-
-        function smoothZoom(now) {
-            const t = (now - zoomStart) / 1000;
-            const scale = 1.03 + Math.sin(t * 0.28) * 0.025;
-            wrap.style.transform = `translate(-50%, -50%) scale(${scale})`;
-            requestAnimationFrame(smoothZoom);
-        }
-        requestAnimationFrame(smoothZoom);
-
         const portrait = document.querySelector(".portrait");
-        let dragging = false;
-        let startX = 0;
-        let startY = 0;
+        const desktop = window.matchMedia("(min-width: 768px)").matches;
+        let targetX = 0;
+        let targetY = 0;
         let currentX = 0;
         let currentY = 0;
 
-        function setShift(x, y) {
-            portrait.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.04)`;
+        if (desktop) {
+            window.addEventListener("pointermove", (e) => {
+                targetX = ((e.clientX / window.innerWidth) - 0.5) * 16;
+                targetY = ((e.clientY / window.innerHeight) - 0.5) * 10;
+            });
+
+            function tick() {
+                currentX += (targetX - currentX) * 0.045;
+                currentY += (targetY - currentY) * 0.045;
+                portrait.style.transform =
+                    `translate3d(calc(-50% + ${currentX.toFixed(2)}px), calc(-50% + ${currentY.toFixed(2)}px), 0)`;
+                requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
         }
-
-        window.addEventListener("pointerdown", (e) => {
-            if (e.target.closest("#enter-btn, .impressum-link")) return;
-            dragging = true;
-            startX = e.clientX - currentX;
-            startY = e.clientY - currentY;
-            portrait.style.transition = "none";
-        });
-
-        window.addEventListener("pointermove", (e) => {
-            if (!dragging) return;
-            currentX = Math.max(-24, Math.min(24, e.clientX - startX));
-            currentY = Math.max(-16, Math.min(16, e.clientY - startY));
-            setShift(currentX, currentY);
-        });
-
-        function endDrag() {
-            if (!dragging) return;
-            dragging = false;
-            currentX = 0;
-            currentY = 0;
-            portrait.style.transition = "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
-            setShift(0, 0);
-        }
-
-        window.addEventListener("pointerup", endDrag);
-        window.addEventListener("pointercancel", endDrag);
 
         document.getElementById("enter-btn").addEventListener("click", function (e) {
             e.preventDefault();
