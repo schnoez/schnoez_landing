@@ -277,6 +277,16 @@
         </div>
     </main>
     <script>
+        const enterBtn = document.getElementById("enter-btn");
+
+        function resetEnter() {
+            enterBtn.textContent = "Enter";
+            enterBtn.style.opacity = "";
+            enterBtn.style.pointerEvents = "";
+        }
+
+        window.addEventListener("pageshow", resetEnter);
+
         const portrait = document.querySelector(".portrait");
         const desktop = window.matchMedia("(min-width: 768px)").matches;
         let targetX = 0;
@@ -300,7 +310,7 @@
             requestAnimationFrame(tick);
         }
 
-        document.getElementById("enter-btn").addEventListener("click", function (e) {
+        enterBtn.addEventListener("click", function (e) {
             e.preventDefault();
             this.textContent = "Loading...";
             this.style.opacity = "0.65";
