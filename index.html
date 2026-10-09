@@ -563,64 +563,47 @@
             </footer>
         </div>
     </main>
-    <!--
+       <!--
         VERY SUBTLE DESKTOP PARALLAX
         The portrait moves only a few pixels
         when the mouse moves.
         It is intentionally subtle.
     -->
     <script>
-        const portrait =
-            document.querySelector(".portrait");
-        const hero =
-            document.querySelector(".hero");
-        const desktop =
-            window.matchMedia(
-                "(min-width: 768px)"
-            );
+        const portrait = document.querySelector(".portrait");
+        const hero = document.querySelector(".hero");
+        const desktop = window.matchMedia("(min-width: 768px)");
+
         if (desktop.matches) {
-            hero.addEventListener(
-                "mousemove",
-                (event) => {
-                    const x =
-                        (event.clientX /
-                        window.innerWidth) - 0.5;
-                    const y =
-                        (event.clientY /
-                        window.innerHeight) - 0.5;
-                    const moveX =
-                        x * 8;
-                    const moveY =
-                        y * 5;
-                    portrait.style.transform =
-                        `
-                        translate(
-                            calc(-50% + ${moveX}px),
-                            calc(-50% + ${moveY}px)
-                        )
-                        scale(1.01)
-                        `;
-                }
-            );
-            hero.addEventListener(
-                "mouseleave",
-                () => {
-                    portrait.style.transform =
-                        `
-                        translate(-50%, -50%)
-                        scale(1.01)
-                        `;
-                }
-            );
+            hero.addEventListener("mousemove", (event) => {
+                const x = (event.clientX / window.innerWidth) - 0.5;
+                const y = (event.clientY / window.innerHeight) - 0.5;
+                const moveX = x * 8;
+                const moveY = y * 5;
+                portrait.style.transform = `
+                    translate(
+                        calc(-50% + ${moveX}px),
+                        calc(-50% + ${moveY}px)
+                    )
+                    scale(1.01)
+                `;
+            });
+
+            hero.addEventListener("mouseleave", () => {
+                portrait.style.transform = `
+                    translate(-50%, -50%)
+                    scale(1.01)
+                `;
+            });
         }
- <script>
-    document.getElementById('enter-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        // kleine Verzögerung sieht natürlicher aus
-        setTimeout(function() {
-            window.location.href = "https://links.schnoez.com";
-        }, 400);
-    });
-</script>
+
+        // Enter Button Redirect
+        document.getElementById('enter-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            setTimeout(function() {
+                window.location.href = "https://links.schnoez.com";
+            }, 400);
+        });
+    </script>
 </body>
 </html>
