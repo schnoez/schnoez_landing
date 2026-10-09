@@ -80,7 +80,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: max(7vh, 50px) 28px max(5vh, 36px);
+            padding: max(7vh, 50px) 28px max(5vh, calc(36px + env(safe-area-inset-bottom)));
         }
         .brand {
             text-align: center;
@@ -216,7 +216,7 @@
                 opacity: 0.75;
             }
             .portrait { object-fit: cover; }
-            .content { padding: max(8vh, 52px) 20px max(5vh, 36px); }
+            .content { padding: max(8vh, 52px) 20px max(5vh, calc(36px + env(safe-area-inset-bottom))); }
             .brand-name {
                 font-size: clamp(38px, 12vw, 58px);
                 letter-spacing: 0.19em;
@@ -285,7 +285,10 @@
             enterBtn.style.pointerEvents = "";
         }
 
-        window.addEventListener("pageshow", resetEnter);
+        window.addEventListener("pagehide", resetEnter);
+        window.addEventListener("pageshow", function () {
+            setTimeout(resetEnter, 0);
+        });
 
         const portrait = document.querySelector(".portrait");
         const desktop = window.matchMedia("(min-width: 768px)").matches;
