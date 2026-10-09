@@ -31,21 +31,18 @@
         }
         .portrait {
             position: absolute;
-            left: 50%;
-            top: 46%;
-            height: 92%;
-            width: auto;
-            max-width: none;
-            transform: translate(-50%, -50%);
-            object-fit: contain;
-            filter: grayscale(1) contrast(1.05) brightness(0.92);
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            filter: grayscale(1) brightness(0.62) contrast(1.08);
             pointer-events: none;
-            user-select: none;
         }
         .shade {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.08) 30%, rgba(0,0,0,0.2) 68%, rgba(0,0,0,0.72) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.22) 34%, rgba(0,0,0,0.38) 70%, rgba(0,0,0,0.76) 100%);
             pointer-events: none;
         }
         .content {
@@ -109,8 +106,10 @@
             0%, 100% { border-color: rgba(255,255,255,0.4); }
             50% { border-color: #fff; }
         }
+        @media (min-width: 768px) {
+            .portrait { object-fit: contain; object-position: center center; background: #050505; }
+        }
         @media (max-width: 767px) {
-            .portrait { height: 78%; top: 50%; }
             .brand-name { font-size: clamp(36px, 12vw, 56px); letter-spacing: 0.14em; }
             .creator-label, .weirdo, .tagline { font-size: 12px; }
             .enter { width: 164px; height: 48px; letter-spacing: 0.28em; }
@@ -120,7 +119,7 @@
 </head>
 <body>
     <main class="hero">
-        <img class="portrait" src="portrait.png" alt="SCHNOEZ">
+        <img class="portrait" src="hintergrund_schnoez_1_large.jpg" alt="SCHNOEZ">
         <div class="shade"></div>
         <div class="content">
             <header>
@@ -147,7 +146,7 @@
         function tick() {
             currentX += (targetX - currentX) * 0.06;
             currentY += (targetY - currentY) * 0.06;
-            portrait.style.transform = `translate(-50%, -50%) translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+            portrait.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
             requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
