@@ -140,6 +140,7 @@
             -webkit-backdrop-filter: blur(12px) saturate(120%);
             box-shadow: 0 10px 40px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.12);
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, opacity 0.3s ease;
+            animation: edge 4.5s ease-in-out 1.4s infinite;
         }
         .enter::before {
             content: "";
@@ -177,6 +178,10 @@
             text-decoration: none;
         }
         .impressum-link:hover { opacity: 0.7; }
+        @keyframes edge {
+            0%, 100% { border-color: rgba(255, 255, 255, 0.45); }
+            50% { border-color: rgba(255, 255, 255, 0.95); }
+        }
         @keyframes breathe {
             from { opacity: 0.82; }
             to { opacity: 1; }
@@ -233,7 +238,7 @@
             .enter { width: 165px; }
         }
         @media (prefers-reduced-motion: reduce) {
-            .brand, .action, .footer, .background-darkness { animation: none; }
+            .brand, .action, .footer, .background-darkness, .enter { animation: none; }
         }
     </style>
 </head>
