@@ -13,13 +13,18 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://schnoez.com">
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
         html, body { width: 100%; height: 100%; background: #050505; }
         body {
             overflow: hidden;
             color: #fff;
             background: #050505;
-            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
         .hero {
             position: relative;
@@ -28,21 +33,37 @@
             min-height: 100vh;
             overflow: hidden;
             background: #050505;
+            isolation: isolate;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(circle at 50% 18%, rgba(255, 245, 235, 0.18), transparent 22%),
+                linear-gradient(180deg, rgba(18, 18, 18, 0.06) 0%, rgba(18, 18, 18, 0.18) 30%, rgba(18, 18, 18, 0.44) 66%, rgba(12, 12, 14, 0.72) 100%),
+                linear-gradient(90deg, rgba(38, 36, 32, 0.28), rgba(38, 36, 32, 0.12), rgba(38, 36, 32, 0.28));
+            pointer-events: none;
         }
         .portrait {
             position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
+            inset: -4% -2% -2%;
+            width: 104%;
+            height: 106%;
             object-fit: cover;
-            object-position: center 20%;
-            filter: grayscale(1) brightness(0.62) contrast(1.08);
+            object-position: center 22%;
+            filter: saturate(1.08) brightness(0.82) contrast(1.02) sepia(0.04) hue-rotate(-2deg);
+            transform: scale(1.08);
             pointer-events: none;
+            will-change: transform;
+            opacity: 0.94;
         }
         .shade {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.22) 34%, rgba(0,0,0,0.38) 70%, rgba(0,0,0,0.76) 100%);
+            z-index: 1;
+            background: linear-gradient(180deg, rgba(10,10,12,0.12) 0%, rgba(10,10,12,0.16) 18%, rgba(10,10,12,0.22) 42%, rgba(10,10,12,0.68) 100%);
             pointer-events: none;
         }
         .content {
@@ -55,12 +76,13 @@
             justify-content: space-between;
             text-align: center;
             padding: max(8vh, 52px) 24px max(5vh, calc(32px + env(safe-area-inset-bottom)));
+            text-shadow: 0 2px 20px rgba(0,0,0,0.45);
         }
-        .brand-name, .creator-label, .weirdo, .tagline, .enter, .footer { font-family: inherit; font-style: normal; }
+        .brand-name, .creator-label, .weirdo, .tagline, .enter, .footer { font-style: normal; }
         .brand-name {
-            font-weight: 500;
+            font-weight: 400;
             font-size: clamp(42px, 8vw, 88px);
-            letter-spacing: 0.2em;
+            letter-spacing: 0.24em;
             line-height: 1;
             text-transform: uppercase;
         }
@@ -68,7 +90,7 @@
             display: block;
             font-size: 13px;
             font-weight: 400;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.12em;
             line-height: 1.35;
         }
         .creator-label { margin-top: 16px; opacity: 0.82; }
@@ -80,7 +102,7 @@
             justify-content: center;
             width: 180px;
             height: 52px;
-            border: 1px solid rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.68);
             border-radius: 999px;
             color: #fff;
             text-decoration: none;
@@ -88,8 +110,19 @@
             font-weight: 500;
             letter-spacing: 0.32em;
             text-transform: uppercase;
-            background: rgba(8,8,8,0.72);
+            background: rgba(12, 12, 14, 0.34);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 14px 28px rgba(0,0,0,0.12);
             animation: edge 3.6s ease-in-out 1.2s infinite;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+        .enter:hover,
+        .enter:focus-visible {
+            transform: translateY(-1px);
+            border-color: rgba(255,255,255,0.8);
+            background: rgba(18, 18, 20, 0.38);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 14px 28px rgba(0,0,0,0.14);
         }
         .footer {
             display: flex;
@@ -107,10 +140,36 @@
             50% { border-color: #fff; }
         }
         @media (min-width: 768px) {
-            .portrait { object-fit: contain; object-position: center center; background: #050505; }
+            .hero {
+                background:
+                    radial-gradient(ellipse at center, #6b645d 0%, #514a45 42%, #252326 72%, #09090b 100%);
+            }
+            .hero::before {
+                inset: -5%;
+                background: url("hintergrund_schnoez_1_large.jpg") center top / cover no-repeat;
+                filter: blur(36px) brightness(0.58) saturate(0.72);
+                opacity: 0.78;
+                transform: scale(1.08);
+            }
+            .portrait {
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center center;
+                filter: saturate(1.08) brightness(0.82) contrast(1.02) sepia(0.04) hue-rotate(-2deg);
+                opacity: 0.98;
+                -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - 38vh), #000 calc(50% - 12vh), #000 calc(50% + 12vh), transparent calc(50% + 38vh));
+                mask-image: linear-gradient(90deg, transparent calc(50% - 38vh), #000 calc(50% - 12vh), #000 calc(50% + 12vh), transparent calc(50% + 38vh));
+            }
+            .shade {
+                background:
+                    linear-gradient(180deg, rgba(10,10,12,0.16) 0%, rgba(10,10,12,0.08) 24%, rgba(10,10,12,0.18) 62%, rgba(10,10,12,0.76) 100%),
+                    linear-gradient(90deg, rgba(10,10,12,0.22), transparent 34%, transparent 66%, rgba(10,10,12,0.22));
+            }
         }
         @media (max-width: 767px) {
-            .brand-name { font-size: clamp(36px, 12vw, 56px); letter-spacing: 0.14em; }
+            .brand-name { font-size: clamp(36px, 12vw, 56px); letter-spacing: 0.16em; }
             .creator-label, .weirdo, .tagline { font-size: 12px; }
             .enter { width: 164px; height: 48px; letter-spacing: 0.28em; }
         }
@@ -132,7 +191,7 @@
             <footer class="footer">
                 @schnoez
                 <span class="separator">·</span>
-                <a href="/impressum.html" class="impressum-link">Impressum</a>
+                <a href="impressum.html" class="impressum-link">Impressum</a>
             </footer>
         </div>
     </main>
