@@ -135,15 +135,15 @@
         }
         .handle {
             display: inline-flex;
-            align-items: baseline;
+            align-items: center;
             line-height: 1;
         }
         .at-sign {
             display: inline-block;
             line-height: 1;
-            vertical-align: text-top;
-            transform: translateY(-0.08em);
+            font-size: 0.82em;
         }
+        .handle-name { line-height: 1; }
         .impressum-link { color: inherit; text-decoration: none; letter-spacing: inherit; font: inherit; }
         .separator { opacity: 0.45; letter-spacing: 0; }
         @keyframes edge {
@@ -199,7 +199,7 @@
             </header>
             <a class="enter" href="https://schnoez.de" id="enter-btn">Enter</a>
             <footer class="footer">
-                <span class="handle"><span class="at-sign">@</span>schnoez</span>
+                <span class="handle"><span class="at-sign">@</span><span class="handle-name">schnoez</span></span>
                 <span class="separator">·</span>
                 <a href="impressum.html" class="impressum-link">Impressum</a>
             </footer>
