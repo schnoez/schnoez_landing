@@ -161,14 +161,23 @@
       transform: translate(-50%, -50%);
     }
     .enter .arrow { font-size: 19px; line-height: 1; letter-spacing: 0; transition: transform .35s var(--ease); }
-    .enter:hover, .enter:focus-visible {
+    .enter:focus-visible {
       background: var(--accent);
       border-color: var(--accent);
       color: #282522;
       transform: translate(-50%, calc(-50% - 2px));
       outline: none;
     }
-    .enter:hover .arrow, .enter:focus-visible .arrow { transform: translateX(4px); }
+    .enter:focus-visible .arrow { transform: translateX(4px); }
+    @media (hover: hover) and (pointer: fine) {
+      .enter:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #282522;
+        transform: translate(-50%, calc(-50% - 2px));
+      }
+      .enter:hover .arrow { transform: translateX(4px); }
+    }
     .bottomline {
       bottom: clamp(22px, 4.2vh, 42px);
       color: var(--muted);
@@ -262,5 +271,9 @@
       <a class="legal" href="impressum.html">Impressum</a>
     </footer>
   </main>
+  <script>
+    const enterLink = document.querySelector(".enter");
+    window.addEventListener("pageshow", () => enterLink.blur());
+  </script>
 </body>
 </html>
