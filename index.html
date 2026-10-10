@@ -7,6 +7,17 @@
   <meta name="description" content="SCHNOEZ — Content Creator.">
   <meta name="robots" content="index, follow">
   <title>SCHNOEZ — Content Creator</title>
+  <link rel="canonical" href="https://schnoez.com/">
+  <script>
+    if (location.protocol === "http:" || location.protocol === "https:") {
+      const canonicalUrl = new URL(location.href);
+      canonicalUrl.protocol = "https:";
+      canonicalUrl.hostname = "schnoez.com";
+      canonicalUrl.port = "";
+      canonicalUrl.pathname = canonicalUrl.pathname.replace(/\/index\.html$/i, "/");
+      if (canonicalUrl.href !== location.href) location.replace(canonicalUrl.href);
+    }
+  </script>
   <link rel="preload" as="image" href="hero.jpg" fetchpriority="high">
   <style>
     :root {
