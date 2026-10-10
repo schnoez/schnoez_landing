@@ -37,6 +37,19 @@
       overflow: hidden;
       background: #aaa7a5;
     }
+    .stage::before {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 50%;
+      width: 1px;
+      height: clamp(16px, 3vh, 28px);
+      background: var(--line);
+      content: "";
+      opacity: .55;
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
     .ambient {
       position: absolute;
       z-index: -3;
