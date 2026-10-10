@@ -148,26 +148,37 @@
       padding: 0 28px 0 34px;
       border: 1px solid rgba(244,240,232,.86);
       border-radius: 999px;
-      background: rgba(22,21,19,.12);
+      background: transparent;
       color: var(--ink);
       text-decoration: none;
       text-transform: uppercase;
       font-size: 12px;
       font-weight: 500;
       letter-spacing: .42em;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+      transition: color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
       transform: translate(-50%, -50%);
     }
+    .enter::before {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      border-radius: inherit;
+      background: rgba(22,21,19,.16);
+      content: "";
+      pointer-events: none;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background .35s var(--ease);
+    }
+    .enter > span { position: relative; z-index: 1; }
     .enter .arrow { font-size: 19px; line-height: 1; letter-spacing: 0; transition: transform .35s var(--ease); }
     .enter:focus-visible, .enter.is-hovered {
-      background: var(--accent);
       border-color: var(--accent);
       color: #282522;
       transform: translate(-50%, calc(-50% - 2px));
       outline: none;
     }
+    .enter:focus-visible::before, .enter.is-hovered::before { background: var(--accent); }
     .enter:focus-visible .arrow, .enter.is-hovered .arrow { transform: translateX(4px); }
     .bottomline {
       bottom: clamp(22px, 4.2vh, 42px);
