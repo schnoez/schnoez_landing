@@ -1,322 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Impressum — SCHNOEZ</title>
-
-    <meta
-        name="description"
-        content="Impressum von SCHNOEZ"
-    >
-
-    <meta name="theme-color" content="#050505">
-
-    <style>
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        html,
-        body {
-            width: 100%;
-            min-height: 100%;
-            background: #050505;
-        }
-
-
-        body {
-            min-height: 100vh;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 40px 20px;
-
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Helvetica Neue",
-                Helvetica,
-                Arial,
-                sans-serif;
-
-            color: #ffffff;
-
-            background:
-                radial-gradient(
-                    ellipse at center,
-                    #161616 0%,
-                    #090909 45%,
-                    #050505 100%
-                );
-        }
-
-
-        .page {
-            width: 100%;
-            max-width: 620px;
-
-            text-align: center;
-        }
-
-
-        .brand {
-            font-size: clamp(38px, 8vw, 64px);
-
-            font-weight: 500;
-
-            letter-spacing: 0.24em;
-
-            line-height: 1;
-
-            margin-left: 0.24em;
-
-            text-transform: uppercase;
-
-            text-shadow:
-                0 2px 25px rgba(0, 0, 0, 0.4);
-
-            margin-bottom: 55px;
-        }
-
-
-        .title {
-            font-size: 11px;
-
-            font-weight: 400;
-
-            letter-spacing: 0.32em;
-
-            margin-left: 0.32em;
-
-            text-transform: uppercase;
-
-            opacity: 0.65;
-
-            margin-bottom: 32px;
-        }
-
-
-        .content {
-            font-size: 14px;
-
-            font-weight: 400;
-
-            line-height: 1.8;
-
-            letter-spacing: 0.03em;
-
-            color: rgba(255, 255, 255, 0.82);
-        }
-
-
-        .content p {
-            margin-bottom: 8px;
-        }
-
-
-        .name {
-            color: #ffffff;
-
-            font-weight: 500;
-
-            margin-bottom: 8px;
-        }
-
-
-        .email,
-        .phone {
-            color: #ffffff;
-
-            text-decoration: none;
-
-            transition:
-                opacity 0.3s ease;
-        }
-
-
-        .email:hover,
-        .phone:hover {
-            opacity: 0.65;
-        }
-
-
-        .back {
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-
-            margin-top: 50px;
-
-            width: 170px;
-            height: 50px;
-
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.55);
-
-            border-radius: 999px;
-
-            color: #ffffff;
-
-            text-decoration: none;
-
-            font-size: 10px;
-
-            font-weight: 500;
-
-            letter-spacing: 0.28em;
-
-            text-transform: uppercase;
-
-            margin-left: 0.28em;
-
-            background:
-                rgba(255, 255, 255, 0.04);
-
-            transition:
-                background 0.35s ease,
-                border-color 0.35s ease,
-                transform 0.35s ease;
-        }
-
-
-        .back:hover {
-            background:
-                rgba(255, 255, 255, 0.10);
-
-            border-color:
-                rgba(255, 255, 255, 0.9);
-
-            transform:
-                translateY(-2px);
-        }
-
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 35px 22px;
-            }
-
-
-            .brand {
-                margin-bottom: 45px;
-            }
-
-
-            .title {
-                font-size: 9px;
-
-                letter-spacing: 0.26em;
-
-                margin-left: 0.26em;
-            }
-
-
-            .content {
-                font-size: 13px;
-
-                line-height: 1.75;
-            }
-
-
-            .back {
-                margin-top: 42px;
-            }
-        }
-
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#aaa7a5">
+  <title>Impressum — SCHNOEZ</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f4f0e8;
+      --muted: rgba(244, 240, 232, .82);
+      --line: rgba(244, 240, 232, .38);
+      --ease: cubic-bezier(.2,.75,.25,1);
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      min-height: 100svh;
+      place-items: center;
+      overflow-x: hidden;
+      padding: clamp(24px, 5vw, 64px) 22px;
+      background: #aaa7a5;
+      color: var(--ink);
+      font-family: Inter, Helvetica, Arial, sans-serif;
+    }
+    body::before, body::after {
+      position: fixed;
+      inset: -7%;
+      content: "";
+      pointer-events: none;
+    }
+    body::before {
+      z-index: -2;
+      background: url("hero.jpg") center / contain no-repeat;
+      filter: blur(42px) brightness(.9) saturate(1);
+      transform: scale(1.06);
+    }
+    body::after {
+      z-index: -1;
+      background: linear-gradient(0deg, rgba(24,22,21,.28), rgba(24,22,21,.04) 52%);
+    }
+    main {
+      width: min(100%, 680px);
+      min-width: 0;
+      padding: clamp(28px, 6vw, 60px);
+      border: 1px solid rgba(244,240,232,.42);
+      background: rgba(35,33,31,.22);
+      box-shadow: 0 24px 80px rgba(24,22,21,.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 42px;
+      font-family: "Helvetica Neue", Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: clamp(38px, 8vw, 72px);
+      font-weight: 400;
+      letter-spacing: .22em;
+      line-height: .98;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0 0 18px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+    p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    a { color: var(--ink); font-family: inherit; }
+    main p a {
+      text-decoration-color: var(--line);
+      text-underline-offset: 4px;
+    }
+    .back {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      margin-top: 24px;
+      padding: 0 22px;
+      border: 1px solid rgba(244,240,232,.72);
+      border-radius: 999px;
+      background: rgba(22,21,19,.12);
+      font-size: 9px;
+      letter-spacing: .25em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+    }
+    .back:hover, .back:focus-visible {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: #282522;
+      outline: none;
+    }
+    @media (max-width: 480px) {
+      main { padding: 28px 24px; }
+      h1 { margin-bottom: 34px; font-size: clamp(32px, 9vw, 42px); letter-spacing: .14em; }
+    }
+  </style>
 </head>
-
-
 <body>
-
-    <main class="page">
-
-        <div class="brand">
-            SCHNOEZ
-        </div>
-
-
-        <div class="title">
-            Impressum
-        </div>
-
-
-        <div class="content">
-
-            <p>
-                Inhalte gemäß §5 DDG
-            </p>
-
-
-            <p class="name">
-                Tobias Schneider
-            </p>
-
-
-            <p>
-                c/o IP-Management #9695
-            </p>
-
-
-            <p>
-                Ludwig-Erhard-Straße 18
-            </p>
-
-
-            <p>
-                20459 Hamburg
-            </p>
-
-
-            <p style="margin-top: 22px;">
-                E-Mail:
-                <a
-                    class="email"
-                    href="mailto:contact@schnoez.com"
-                >
-                    contact@schnoez.com
-                </a>
-            </p>
-
-
-            <p>
-                Telefon:
-                <a
-                    class="phone"
-                    href="tel:+4993199163222"
-                >
-                    +49 931 99163222
-                </a>
-            </p>
-
-        </div>
-
-
-        <a
-            class="back"
-            href="index.html"
-        >
-            Zurück
-        </a>
-
-    </main>
-
+  <main>
+    <p class="eyebrow">SCHNOEZ · Legal</p>
+    <h1>Impressum</h1>
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>
+      Tobias Schneider<br>
+      c/o IP-Management #9695<br>
+      Ludwig-Erhard-Straße 18<br>
+      20459 Hamburg
+    </p>
+    <p>
+      E-Mail: <a href="mailto:contact@schnoez.com">contact@schnoez.com</a><br>
+      Telefon: <a href="tel:+4993199163222">+49 931 99163222</a>
+    </p>
+    <a class="back" href="index.html">← Zurück zur Startseite</a>
+  </main>
 </body>
 </html>

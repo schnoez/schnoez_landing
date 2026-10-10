@@ -1,236 +1,262 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>SCHNOEZ — Content Creator</title>
-    <meta name="description" content="SCHNOEZ — Content Creator">
-    <meta name="theme-color" content="#050505">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-    <meta property="og:title" content="SCHNOEZ">
-    <meta property="og:description" content="Content Creator">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://schnoez.com">
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-        html, body { width: 100%; height: 100%; background: #050505; }
-        body {
-            overflow: hidden;
-            color: #fff;
-            background: #050505;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100dvh;
-            min-height: 100vh;
-            overflow: hidden;
-            background: #050505;
-            isolation: isolate;
-        }
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            background:
-                radial-gradient(circle at 50% 18%, rgba(255, 245, 235, 0.18), transparent 22%),
-                linear-gradient(180deg, rgba(18, 18, 18, 0.06) 0%, rgba(18, 18, 18, 0.18) 30%, rgba(18, 18, 18, 0.44) 66%, rgba(12, 12, 14, 0.72) 100%),
-                linear-gradient(90deg, rgba(38, 36, 32, 0.28), rgba(38, 36, 32, 0.12), rgba(38, 36, 32, 0.28));
-            pointer-events: none;
-        }
-        .portrait {
-            position: absolute;
-            inset: -4% -2% -2%;
-            width: 104%;
-            height: 106%;
-            object-fit: cover;
-            object-position: center 22%;
-            filter: saturate(1.08) brightness(0.82) contrast(1.02) sepia(0.04) hue-rotate(-2deg);
-            transform: scale(1.08);
-            pointer-events: none;
-            will-change: transform;
-            opacity: 0.94;
-        }
-        .shade {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            background: linear-gradient(180deg, rgba(10,10,12,0.12) 0%, rgba(10,10,12,0.16) 18%, rgba(10,10,12,0.22) 42%, rgba(10,10,12,0.68) 100%);
-            pointer-events: none;
-        }
-        .content {
-            position: relative;
-            z-index: 2;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            text-align: center;
-            padding: max(8vh, 52px) 24px max(5vh, calc(32px + env(safe-area-inset-bottom)));
-            text-shadow: 0 2px 20px rgba(0,0,0,0.45);
-        }
-        .brand-name, .creator-label, .weirdo, .tagline, .enter, .footer { font-style: normal; }
-        .brand-name {
-            font-weight: 400;
-            font-size: clamp(42px, 8vw, 88px);
-            letter-spacing: 0.24em;
-            line-height: 1;
-            text-transform: uppercase;
-        }
-        .creator-label, .weirdo, .tagline {
-            display: block;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.12em;
-            line-height: 1.35;
-        }
-        .creator-label { margin-top: 16px; opacity: 0.82; }
-        .weirdo { margin-top: 8px; opacity: 0.82; }
-        .tagline { margin-top: 8px; opacity: 0.66; }
-        .enter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 180px;
-            height: 52px;
-            border: 1px solid rgba(255,255,255,0.68);
-            border-radius: 999px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.32em;
-            text-transform: uppercase;
-            background: rgba(12, 12, 14, 0.34);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 14px 28px rgba(0,0,0,0.12);
-            animation: edge 3.6s ease-in-out 1.2s infinite;
-            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-        }
-        .enter:hover,
-        .enter:focus-visible {
-            transform: translateY(-1px);
-            border-color: rgba(255,255,255,0.8);
-            background: rgba(18, 18, 20, 0.38);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 14px 28px rgba(0,0,0,0.14);
-        }
-        .footer {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-size: 10px;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-        .impressum-link { color: inherit; text-decoration: none; letter-spacing: inherit; font: inherit; }
-        .separator { opacity: 0.45; letter-spacing: 0; }
-        @keyframes edge {
-            0%, 100% { border-color: rgba(255,255,255,0.4); }
-            50% { border-color: #fff; }
-        }
-        @media (min-width: 768px) {
-            .hero {
-                background:
-                    radial-gradient(ellipse at center, #6b645d 0%, #514a45 42%, #252326 72%, #09090b 100%);
-            }
-            .hero::before {
-                inset: -5%;
-                background: url("hintergrund_schnoez_1_large.jpg") center top / cover no-repeat;
-                filter: blur(36px) brightness(0.58) saturate(0.72);
-                opacity: 0.78;
-                transform: scale(1.08);
-            }
-            .portrait {
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-                object-position: center center;
-                filter: saturate(1.08) brightness(0.82) contrast(1.02) sepia(0.04) hue-rotate(-2deg);
-                opacity: 0.98;
-                -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - 38vh), #000 calc(50% - 12vh), #000 calc(50% + 12vh), transparent calc(50% + 38vh));
-                mask-image: linear-gradient(90deg, transparent calc(50% - 38vh), #000 calc(50% - 12vh), #000 calc(50% + 12vh), transparent calc(50% + 38vh));
-            }
-            .shade {
-                background:
-                    linear-gradient(180deg, rgba(10,10,12,0.16) 0%, rgba(10,10,12,0.08) 24%, rgba(10,10,12,0.18) 62%, rgba(10,10,12,0.76) 100%),
-                    linear-gradient(90deg, rgba(10,10,12,0.22), transparent 34%, transparent 66%, rgba(10,10,12,0.22));
-            }
-        }
-        @media (max-width: 767px) {
-            .brand-name { font-size: clamp(36px, 12vw, 56px); letter-spacing: 0.16em; }
-            .creator-label, .weirdo, .tagline { font-size: 12px; }
-            .enter { width: 164px; height: 48px; letter-spacing: 0.28em; }
-        }
-        @media (prefers-reduced-motion: reduce) { .enter { animation: none; } }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#aaa7a5">
+  <meta name="description" content="SCHNOEZ — Content Creator.">
+  <meta name="robots" content="index, follow">
+  <title>SCHNOEZ — Content Creator</title>
+  <link rel="preload" as="image" href="hero.jpg" fetchpriority="high">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f4f0e8;
+      --muted: rgba(244, 240, 232, .82);
+      --line: rgba(244, 240, 232, .62);
+      --accent: #d6c8b7;
+      --ease: cubic-bezier(.2,.75,.25,1);
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body {
+      background: #aaa7a5;
+      color: var(--ink);
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+    }
+    a { color: inherit; }
+    .stage {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      min-height: 100svh;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #aaa7a5;
+    }
+    .ambient {
+      position: absolute;
+      z-index: -3;
+      inset: -7%;
+      width: 114%;
+      height: 114%;
+      object-fit: contain;
+      filter: blur(42px) brightness(.9) saturate(1);
+      transform: scale(1.06);
+    }
+    .ambient-shade {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(24,22,21,.1), transparent 30%, transparent 70%, rgba(24,22,21,.1)),
+        linear-gradient(0deg, rgba(24,22,21,.18), transparent 48%);
+    }
+    .portrait-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .portrait {
+      display: block;
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: center center;
+      filter: brightness(.9) contrast(1.02) saturate(.95);
+      animation: image-arrive 1.4s var(--ease) both;
+    }
+    .portrait-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(0deg, rgba(24,22,21,.18), transparent 34%, transparent 70%, rgba(24,22,21,.04));
+    }
+    .bottomline {
+      position: absolute;
+      left: clamp(22px, 5.2vw, 76px);
+      right: clamp(22px, 5.2vw, 76px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-transform: uppercase;
+      font-size: 9px;
+      letter-spacing: .34em;
+      font-weight: 500;
+    }
+    .content {
+      position: absolute;
+      inset: 0;
+      animation: content-arrive 1s .12s var(--ease) both;
+    }
+    .wordmark {
+      position: absolute;
+      top: clamp(30px, 7vh, 72px);
+      left: 50%;
+      margin: 0;
+      padding-left: .22em;
+      font-size: clamp(44px, 8.1vw, 112px);
+      line-height: .98;
+      font-family: "Helvetica Neue", Inter, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 30px rgba(0,0,0,.16);
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    .intro {
+      position: absolute;
+      top: 49%;
+      left: clamp(22px, 5.2vw, 76px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: min(380px, calc(100vw - 44px));
+      transform: translateY(-50%);
+    }
+    .subtitle, .tagline {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(11px, 1.05vw, 13px);
+      line-height: 1.4;
+      font-weight: 300;
+      letter-spacing: .08em;
+      font-family: inherit;
+    }
+    .enter {
+      position: absolute;
+      top: 66%;
+      left: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      min-width: 226px;
+      min-height: 56px;
+      margin: 0;
+      padding: 0 28px 0 34px;
+      border: 1px solid rgba(244,240,232,.86);
+      border-radius: 999px;
+      background: rgba(22,21,19,.12);
+      color: var(--ink);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .42em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+      transform: translate(-50%, -50%);
+    }
+    .enter .arrow { font-size: 19px; line-height: 1; letter-spacing: 0; transition: transform .35s var(--ease); }
+    .enter:hover, .enter:focus-visible {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #282522;
+      transform: translate(-50%, calc(-50% - 2px));
+      outline: none;
+    }
+    .enter:hover .arrow, .enter:focus-visible .arrow { transform: translateX(4px); }
+    .bottomline {
+      bottom: clamp(22px, 4.2vh, 42px);
+      color: var(--muted);
+      font-size: 8px;
+      letter-spacing: .34em;
+      line-height: 1.9;
+    }
+    .social, .legal { font-family: inherit; }
+    .social { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+    .social span:last-child { letter-spacing: .25em; }
+    .legal { text-decoration: none; transition: color .25s ease; }
+    .legal:hover { color: var(--ink); }
+    .bottomline::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: calc(-1 * clamp(22px, 4.2vh, 42px));
+      height: clamp(26px, 5vh, 54px);
+      width: 1px;
+      background: var(--line);
+      opacity: .8;
+    }
+    @keyframes image-arrive { from { opacity: 0; transform: scale(1.025); } to { opacity: 1; transform: scale(1); } }
+    @keyframes content-arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+    @media (min-width: 900px) {
+      .enter { min-width: 250px; min-height: 60px; }
+      .wordmark { font-size: clamp(68px, 7.3vw, 112px); }
+    }
+    @media (min-width: 601px) {
+      .portrait {
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+      }
+    }
+    @media (max-width: 600px) {
+      .content { --mobile-wordmark-size: clamp(38px, 10.3vw, 60px); }
+      .ambient { object-fit: cover; }
+      .portrait { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center 43%; }
+      .ambient { filter: blur(24px) brightness(.9) saturate(1); }
+      .ambient-shade { background: linear-gradient(0deg, rgba(24,22,21,.18), transparent 48%); }
+      .portrait-wrap::after { background: linear-gradient(0deg, rgba(24,22,21,.18), transparent 40%, transparent 68%, rgba(24,22,21,.04)); }
+      .bottomline { font-size: 7px; letter-spacing: .25em; }
+      .wordmark { font-size: var(--mobile-wordmark-size); letter-spacing: .2em; padding-left: .2em; }
+      .intro {
+        top: calc(clamp(30px, 7vh, 72px) + var(--mobile-wordmark-size) + 16px);
+        left: 50%;
+        align-items: center;
+        max-width: calc(100vw - 32px);
+        text-align: center;
+        transform: translateX(-50%);
+      }
+      .subtitle, .tagline { font-size: 11px; }
+      .enter { top: 66%; min-width: 206px; min-height: 52px; }
+      .bottomline { bottom: 24px; }
+      .bottomline::after { height: 28px; bottom: -24px; }
+    }
+    @media (max-width: 360px) {
+      .content { --mobile-wordmark-size: 35px; }
+      .wordmark { letter-spacing: .16em; padding-left: .16em; }
+      .subtitle, .tagline { font-size: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-    <main class="hero">
-        <img class="portrait" src="hintergrund_schnoez_1_large.jpg" alt="SCHNOEZ">
-        <div class="shade"></div>
-        <div class="content">
-            <header>
-                <h1 class="brand-name">Schnoez</h1>
-                <span class="creator-label">Content Creator</span>
-                <span class="weirdo">You probably shouldn't be here.</span>
-            </header>
-            <a class="enter" href="https://schnoez.de" id="enter-btn">Enter</a>
-            <footer class="footer">
-                @schnoez
-                <span class="separator">·</span>
-                <a href="impressum.html" class="impressum-link">Impressum</a>
-            </footer>
-        </div>
-    </main>
-    <script>
-        window.addEventListener("pageshow", function (event) {
-            if (event.persisted) location.reload();
-        });
-        const portrait = document.querySelector(".portrait");
-        let targetX = 0, targetY = 0, currentX = 0, currentY = 0;
-        let baseBeta = null, baseGamma = null;
-        function tick() {
-            currentX += (targetX - currentX) * 0.06;
-            currentY += (targetY - currentY) * 0.06;
-            portrait.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
-            requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-        if (window.matchMedia("(pointer: fine)").matches) {
-            window.addEventListener("pointermove", (e) => {
-                targetX = ((e.clientX / window.innerWidth) - 0.5) * 12;
-                targetY = ((e.clientY / window.innerHeight) - 0.5) * 8;
-            });
-        } else {
-            function onTilt(e) {
-                if (baseBeta === null) { baseBeta = e.beta; baseGamma = e.gamma; }
-                targetX = Math.max(-10, Math.min(10, (e.gamma - baseGamma) * 0.25));
-                targetY = Math.max(-8, Math.min(8, (e.beta - baseBeta) * 0.18));
-            }
-            function enableTilt() {
-                if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-                    DeviceOrientationEvent.requestPermission().then((state) => {
-                        if (state === "granted") window.addEventListener("deviceorientation", onTilt);
-                    }).catch(() => {});
-                } else window.addEventListener("deviceorientation", onTilt);
-            }
-            window.addEventListener("pointerdown", enableTilt, { once: true });
-        }
-        document.getElementById("enter-btn").addEventListener("click", function () {
-            this.textContent = "Loading...";
-        });
-    </script>
+  <main class="stage">
+    <img class="ambient" src="hero.jpg" alt="" aria-hidden="true">
+    <div class="ambient-shade" aria-hidden="true"></div>
+    <div class="portrait-wrap" aria-hidden="true">
+      <img class="portrait" src="hero.jpg" alt="">
+    </div>
+
+    <section class="content" aria-labelledby="brand">
+      <h1 class="wordmark" id="brand">Schnoez</h1>
+      <div class="intro">
+        <p class="subtitle">Content Creator</p>
+        <p class="tagline">You probably shouldn't be here.</p>
+      </div>
+      <a class="enter" href="https://schnoez.de" aria-label="Enter schnoez.de">
+        <span>Enter</span><span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <footer class="bottomline">
+      <a class="social" href="https://www.instagram.com/schnoez/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @schnoez">
+        <span>Instagram</span><span>@schnoez</span>
+      </a>
+      <a class="legal" href="impressum.html">Impressum</a>
+    </footer>
+  </main>
 </body>
 </html>
