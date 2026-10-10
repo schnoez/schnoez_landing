@@ -172,6 +172,20 @@
     }
     .enter > span { position: relative; z-index: 1; }
     .enter .arrow { font-size: 19px; line-height: 1; letter-spacing: 0; transition: transform .35s var(--ease); }
+    .enter.is-loading { gap: 0; }
+    .enter.is-loading .arrow { display: none; }
+    .enter.is-loading .enter-label::after {
+      content: "";
+      display: inline-block;
+      width: 1.5em;
+      text-align: left;
+      animation: loading-dots 1.2s steps(1, end) infinite;
+    }
+    @keyframes loading-dots {
+      0%, 100% { content: "."; }
+      33% { content: ".."; }
+      66% { content: "..."; }
+    }
     .enter:focus-visible, .enter.is-hovered {
       border-color: var(--accent);
       color: #282522;
@@ -262,7 +276,7 @@
         <p class="tagline">You probably shouldn't be here.</p>
       </div>
       <a class="enter" href="https://schnoez.de" aria-label="Enter schnoez.de">
-        <span>Enter</span><span class="arrow" aria-hidden="true">→</span>
+        <span class="enter-label">Enter</span><span class="arrow" aria-hidden="true">→</span>
       </a>
     </section>
 
@@ -275,6 +289,7 @@
   </main>
   <script>
     const enterLink = document.querySelector(".enter");
+    const enterLabel = enterLink.querySelector(".enter-label");
     const resetEnterState = () => {
       enterLink.classList.remove("is-hovered");
       enterLink.blur();
@@ -287,7 +302,17 @@
       if (event.pointerType !== "mouse") resetEnterState();
     });
     window.addEventListener("pagehide", resetEnterState);
-    window.addEventListener("pageshow", resetEnterState);
+    enterLink.addEventListener("click", () => {
+      enterLink.classList.add("is-loading");
+      enterLabel.textContent = "Loading";
+      enterLink.setAttribute("aria-label", "Loading");
+    });
+    window.addEventListener("pageshow", () => {
+      resetEnterState();
+      enterLink.classList.remove("is-loading");
+      enterLabel.textContent = "Enter";
+      enterLink.setAttribute("aria-label", "Enter schnoez.de");
+    });
   </script>
 </body>
 </html>
